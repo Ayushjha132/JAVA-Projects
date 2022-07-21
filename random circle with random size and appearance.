@@ -1,0 +1,53 @@
+/* Create a random circles on the screen with random size of different colors using AWT framework. 
+
+*/
+
+
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+public class AWTClass extends Frame {
+    int w = 400;
+    int h = 400;
+    public AWTClass(){
+        setBackground(Color.CYAN);
+        setVisible(true);
+        setLayout(new FlowLayout());
+        setSize(w,h);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                repaint();
+            }
+        });
+
+
+
+    }
+
+    public void paint(Graphics g){
+        Random random = new Random();
+        Dimension d = getSize();
+        int w = d.width;
+        int h = d.height;
+        int circles = random.nextInt(150);
+        for(int i = 0; i< circles; i++){
+            int s = random.nextInt(80);
+            g.setColor(new Color(random.nextInt(255), random.nextInt(255),random.nextInt(255) ));
+            g.fillOval(random.nextInt(w),random.nextInt(h),s,s);
+        }
+    }
+
+    public static void main(String[] args) {
+        AWTClass awtClass = new AWTClass();
+    }
+}
